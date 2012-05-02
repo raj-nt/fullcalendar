@@ -10,7 +10,7 @@ var defaults = {
 		right: 'today prev,next'
 	},
 	weekends: true,
-	
+	daysinmultiday:5,
 	// editing
 	//editable: false,
 	//disableDragging: false,
@@ -28,12 +28,14 @@ var defaults = {
 	titleFormat: {
 		month: 'MMMM yyyy',
 		week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}",
+		multiday: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}",
 		day: 'dddd, MMM d, yyyy'
 	},
 	columnFormat: {
 		month: 'ddd',
 		week: 'ddd M/d',
-		day: 'dddd M/d'
+		day: 'dddd M/d',
+		multiday: 'dddd M/d'
 	},
 	timeFormat: { // for event elements
 		'': 'h(:mm)t' // default
@@ -54,6 +56,7 @@ var defaults = {
 		today: 'today',
 		month: 'month',
 		week: 'week',
+		multiday: 'multiday',
 		day: 'day'
 	},
 	
