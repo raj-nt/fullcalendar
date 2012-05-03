@@ -67,7 +67,14 @@ function AgendaEventRenderer() {
 			}
 		}
 		if (opt('allDaySlot')) {
-			renderDaySegs(compileDaySegs(dayEvents), modifiedEventId);
+                        var daySegEvents=compileDaySegs(dayEvents);
+			renderDaySegs(daySegEvents, modifiedEventId);
+                        if (opt('allDaySlotAutoHide')){
+                            if(daySegEvents.length >0)
+                                $(".fc-agenda-allday, .fc-agenda-divider").show()
+                            else
+                                $(".fc-agenda-allday, .fc-agenda-divider").hide()
+                        }
 			setHeight(); // no params means set to viewHeight
 		}
 		renderSlotSegs(compileSlotSegs(slotEvents), modifiedEventId);
