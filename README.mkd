@@ -47,7 +47,7 @@ To see a full list of all available options, please consult the [FullCalendar do
 
 
 Additional Features available in this forked version of Full Calendar
-=====================================================================
+---------------------------------------------------------------------
 
 Views
 -----
