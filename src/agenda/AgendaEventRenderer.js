@@ -47,6 +47,7 @@ function AgendaEventRenderer() {
 	var calendar = t.calendar;
 	var formatDate = calendar.formatDate;
 	var formatDates = calendar.formatDates;
+	var timelineInterval;
 	
 	
 	
@@ -78,6 +79,10 @@ function AgendaEventRenderer() {
 			setHeight(); // no params means set to viewHeight
 		}
 		renderSlotSegs(compileSlotSegs(slotEvents), modifiedEventId);
+                if(timelineInterval){
+                    window.clearInterval(timelineInterval);
+                }
+                timelineInterval = window.setInterval(setCurrentTimeMarker, 60000);
                 setCurrentTimeMarker();
 	}
 	

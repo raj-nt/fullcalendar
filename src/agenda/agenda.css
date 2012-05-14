@@ -32,7 +32,10 @@
 .fc-agenda-days .fc-col0 {
 	border-left-width: 0;
 	}
-	
+        
+.fc-agenda-days .fc-dayheads{
+        cursor:pointer;
+}
 /* all-day area */
 	
 .fc-agenda-allday th {
