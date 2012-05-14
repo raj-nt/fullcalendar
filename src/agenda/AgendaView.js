@@ -310,8 +310,8 @@ function AgendaView(element, calendar, viewName) {
         }
 	
         function dayHeadClick(ev){
-            cells = dayHead.find('th').slice(1, -1);
-            clickedDate = new Date(t.start.getTime() + 86400000*cells.index(ev.target));
+            var cells = dayHead.find('th').slice(1, -1);
+            var clickedDate = new Date(t.start.getTime() + 86400000*cells.index(ev.target));
             t.calendar.changeView('agendaDay');
             t.calendar.gotoDate(clickedDate);
         }
