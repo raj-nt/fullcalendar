@@ -609,7 +609,14 @@ function AgendaView(element, calendar, viewName) {
 	
 	
 	function dayOfWeekCol(dayOfWeek) {
-		return ((dayOfWeek - Math.max(firstDay, nwe) + colCnt) % colCnt)*dis+dit;
+            if (t.name=="agendaMultiday" || t.name=="basicMultiday"){
+                var firstDayOfCal = t.visStart.getDay();
+                var dow = (dayOfWeek < firstDay) ? (dayOfWeek + 7) : dayOfWeek;
+                return ((dow - Math.max(firstDayOfCal, nwe) + colCnt) % colCnt)*dis+dit;
+            }
+            else{
+                return ((dayOfWeek - Math.max(firstDay, nwe) + colCnt) % colCnt)*dis+dit;
+            }
 	}
 	
 	
