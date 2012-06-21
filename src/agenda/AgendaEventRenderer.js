@@ -127,17 +127,22 @@ function AgendaEventRenderer() {
 			timeline.hide();
 			return;
 		}
-                var curTime={hour:cur_time.getHours(),minute:cur_time.getMinutes()};
-                var curTimeMins = (curTime.hour * 60) + curTime.minute
-                var startTimeMins = getMinMinute();
-                var curTimeSlot = Math.floor((curTimeMins - startTimeMins)/parseInt(t.opt('slotMinutes')));
-                var pxPerMinute = $("tr.fc-slot" + curTimeSlot).height()/(parseInt(t.opt('slotMinutes'))-1);
-                var topPx = $("tr.fc-slot" + curTimeSlot).position().top + Math.floor((curTime.minute % parseInt(t.opt('slotMinutes'))) * pxPerMinute)
+        var curTime={hour:cur_time.getHours(),minute:cur_time.getMinutes()};
+        var curTimeMins = (curTime.hour * 60) + curTime.minute
+        var startTimeMins = getMinMinute();
+        var endTimeMins = getMaxMinute();
+        if (curTimeMins < startTimeMins || curTimeMins > endTimeMins){
+			timeline.hide();
+        	return;
+        }
+        var curTimeSlot = Math.floor((curTimeMins - startTimeMins)/parseInt(t.opt('slotMinutes')));
+        var pxPerMinute = $("tr.fc-slot" + curTimeSlot).height()/(parseInt(t.opt('slotMinutes'))-1);
+        var topPx = $("tr.fc-slot" + curTimeSlot).position().top + Math.floor((curTime.minute % parseInt(t.opt('slotMinutes'))) * pxPerMinute)
 		timeline.css('top', topPx  + 'px');
-                var daycol = $('.fc-today', t.element);
-                var left = daycol.position().left + 1;
-                var width = daycol.width();
-                timeline.css({ left: left + 'px', width: width + 'px' });
+        var daycol = $('.fc-today', t.element);
+        var left = daycol.position().left + 1;
+        var width = daycol.width();
+        timeline.css({ left: left + 'px', width: width + 'px' });
 	}
         
 	function compileSlotSegs(events) {
