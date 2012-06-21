@@ -127,12 +127,13 @@ function AgendaEventRenderer() {
 			timeline.hide();
 			return;
 		}
-
-		var secs = (cur_time.getHours() * 60 * 60) + (cur_time.getMinutes() * 60) + cur_time.getSeconds();
-		var percents = secs / 86400; // 24 * 60 * 60 = 86400, # of seconds in a day
-
-		timeline.css('top', Math.floor(container.height() * percents - 1) + 'px');
-
+                var curTime={hour:cur_time.getHours(),minute:cur_time.getMinutes()};
+                var curTimeMins = (curTime.hour * 60) + curTime.minute
+                var startTimeMins = getMinMinute();
+                var curTimeSlot = Math.floor((curTimeMins - startTimeMins)/parseInt(t.opt('slotMinutes')));
+                var pxPerMinute = $("tr.fc-slot" + curTimeSlot).height()/(parseInt(t.opt('slotMinutes'))-1);
+                var topPx = $("tr.fc-slot" + curTimeSlot).position().top + Math.floor((curTime.minute % parseInt(t.opt('slotMinutes'))) * pxPerMinute)
+		timeline.css('top', topPx  + 'px');
                 var daycol = $('.fc-today', t.element);
                 var left = daycol.position().left + 1;
                 var width = daycol.width();
