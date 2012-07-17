@@ -11,6 +11,7 @@ var defaults = {
 	},
 	weekends: true,
 	daysinmultiday:5,
+        showyesterdayinmultiday:true,
 	correctiontoapply:0,
 	// editing
 	//editable: false,

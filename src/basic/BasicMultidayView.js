@@ -22,7 +22,7 @@ function BasicMultidayView(element, calendar) {
 		if (delta) {
 			addDays(date, delta * daysInMultiday);
 		}
-		var start = addDays(cloneDate(date), -1);
+		var start = addDays(cloneDate(date),  opt('showyesterdayinmultiday') ? -1 : 0);
 		var end = addDays(cloneDate(start), daysInMultiday);
 		var visStart = cloneDate(start);
 		var visEnd = cloneDate(end);
