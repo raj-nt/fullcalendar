@@ -136,8 +136,8 @@ function AgendaEventRenderer() {
         	return;
         }
         var curTimeSlot = Math.floor((curTimeMins - startTimeMins)/parseInt(t.opt('slotMinutes')));
-        var pxPerMinute = $("tr.fc-slot" + curTimeSlot).height()/(parseInt(t.opt('slotMinutes'))-1);
-        var topPx = $("tr.fc-slot" + curTimeSlot).position().top + Math.floor((curTime.minute % parseInt(t.opt('slotMinutes'))) * pxPerMinute)
+        var pxPerMinute = $("tr.fc-slot" + curTimeSlot + ":visible").height()/(parseInt(t.opt('slotMinutes'))-1);
+        var topPx = $("tr.fc-slot" + curTimeSlot + ":visible").position().top + Math.floor((curTime.minute % parseInt(t.opt('slotMinutes'))) * pxPerMinute)
 		timeline.css('top', topPx  + 'px');
         var daycol = $('.fc-today', t.element);
         var left = daycol.position().left + 1;
