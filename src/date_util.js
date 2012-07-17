@@ -18,6 +18,9 @@ var dayIDs = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
 	HOUR_MS = 3600000,
 	MINUTE_MS = 60000;
 	
+function getNewDate(correctionFactor){
+    return new Date(new Date().getTime() + correctionFactor);
+}
 
 function addYears(d, n, keepTime) {
 	d.setFullYear(d.getFullYear() + n);

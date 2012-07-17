@@ -11,6 +11,7 @@ var defaults = {
 	},
 	weekends: true,
 	daysinmultiday:5,
+	correctiontoapply:0,
 	// editing
 	//editable: false,
 	//disableDragging: false,

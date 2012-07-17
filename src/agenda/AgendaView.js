@@ -321,7 +321,7 @@ function AgendaView(element, calendar, viewName) {
 		var headCell;
 		var bodyCell;
 		var date;
-		var today = clearTime(new Date());
+		var today = clearTime(getNewDate(opt('correctiontoapply')));
 		for (i=0; i<colCnt; i++) {
 			date = colDate(i);
 			headCell = dayHeadCells.eq(i);

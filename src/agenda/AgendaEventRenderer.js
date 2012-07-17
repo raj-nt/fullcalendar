@@ -119,7 +119,7 @@ function AgendaEventRenderer() {
 			timeline = $('<hr>').addClass('fc-timeline').appendTo(container);
 		}
 
-		var cur_time = new Date();
+		var cur_time =  getNewDate(opt('correctiontoapply'));
 		if (t.visStart < cur_time && t.visEnd > cur_time) {
 			timeline.show();
 		}
