@@ -113,36 +113,41 @@ function AgendaEventRenderer() {
 	
 	function setCurrentTimeMarker()
 	{
-		var container = getBodyContent();
-		var timeline = container.children('.fc-timeline');
-		if (timeline.length == 0) { // if timeline isn't there, add it
-			timeline = $('<hr>').addClass('fc-timeline').appendTo(container);
-		}
+                if (t.calendar.getView().name.indexOf("agenda")!=-1){
+                    var container = getBodyContent();
+                    var timeline = container.children('.fc-timeline');
+                    if (timeline.length == 0) { // if timeline isn't there, add it
+                            timeline = $('<hr>').addClass('fc-timeline').appendTo(container);
+                    }
 
-		var cur_time =  getNewDate(opt('correctiontoapply'));
-		if (t.visStart < cur_time && t.visEnd > cur_time) {
-			timeline.show();
-		}
-		else {
-			timeline.hide();
-			return;
-		}
-        var curTime={hour:cur_time.getHours(),minute:cur_time.getMinutes()};
-        var curTimeMins = (curTime.hour * 60) + curTime.minute
-        var startTimeMins = getMinMinute();
-        var endTimeMins = getMaxMinute();
-        if (curTimeMins < startTimeMins || curTimeMins > endTimeMins){
-			timeline.hide();
-        	return;
-        }
-        var curTimeSlot = Math.floor((curTimeMins - startTimeMins)/parseInt(t.opt('slotMinutes')));
-        var pxPerMinute = $("tr.fc-slot" + curTimeSlot + ":visible").height()/(parseInt(t.opt('slotMinutes'))-1);
-        var topPx = $("tr.fc-slot" + curTimeSlot + ":visible").position().top + Math.floor((curTime.minute % parseInt(t.opt('slotMinutes'))) * pxPerMinute)
-		timeline.css('top', topPx  + 'px');
-        var daycol = $('.fc-today', t.element);
-        var left = daycol.position().left + 1;
-        var width = daycol.width();
-        timeline.css({ left: left + 'px', width: width + 'px' });
+                    var cur_time =  getNewDate(opt('correctiontoapply'));
+                    if (t.visStart < cur_time && t.visEnd > cur_time) {
+                            timeline.show();
+                    }
+                    else {
+                            timeline.hide();
+                            return;
+                    }
+                    var curTime={hour:cur_time.getHours(),minute:cur_time.getMinutes()};
+                    var curTimeMins = (curTime.hour * 60) + curTime.minute
+                    var startTimeMins = getMinMinute();
+                    var endTimeMins = getMaxMinute();
+                    if (curTimeMins < startTimeMins || curTimeMins > endTimeMins){
+                                    timeline.hide();
+                            return;
+                    }
+                    var curTimeSlot = Math.floor((curTimeMins - startTimeMins)/parseInt(t.opt('slotMinutes')));
+                    var pxPerMinute = $("tr.fc-slot" + curTimeSlot + ":visible").height()/(parseInt(t.opt('slotMinutes'))-1);
+                    var topPx = $("tr.fc-slot" + curTimeSlot + ":visible").position().top + Math.floor((curTime.minute % parseInt(t.opt('slotMinutes'))) * pxPerMinute)
+                            timeline.css('top', topPx  + 'px');
+                    var daycol = $('.fc-today', t.element);
+                    var left = daycol.position().left + 1;
+                    var width = daycol.width();
+                    timeline.css({ left: left + 'px', width: width + 'px' });
+                }
+                else{
+                    window.clearInterval(timelineInterval);
+                }
 	}
         
 	function compileSlotSegs(events) {
